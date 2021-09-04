@@ -22,7 +22,7 @@ import com.example.prod_med_app.Model.Medication;
 
 import java.util.List;
 
-public class RecyclerAdapt extends RecyclerView.Adapter<RecyclerAdapt.ViewHolder>
+public class RecyclerMedicationAdapt extends RecyclerView.Adapter<RecyclerMedicationAdapt.ViewHolder>
 {
     private Context the_context = null;
     private List<Medication> list_of_meds = null;
@@ -38,7 +38,7 @@ public class RecyclerAdapt extends RecyclerView.Adapter<RecyclerAdapt.ViewHolder
     private Button the_yes_button = null;
 
     // RecyclerViewAdapt Constructor
-    public RecyclerAdapt(Context context, List<Medication> the_list)
+    public RecyclerMedicationAdapt(Context context, List<Medication> the_list)
     {
         the_context = context;
         list_of_meds = the_list;
@@ -56,10 +56,10 @@ public class RecyclerAdapt extends RecyclerView.Adapter<RecyclerAdapt.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
-        Medication some_item = list_of_meds.get(position);
+        Medication medication = list_of_meds.get(position);
 
-       /* holder.first.setText(some_item.getFirstName());
-        holder.last.setText(", " + some_item.getLastName());*/
+        holder.first.setText(medication.getFirstName());
+        holder.last.setText(medication.getLastName());
     }
 
     @Override
@@ -83,18 +83,19 @@ public class RecyclerAdapt extends RecyclerView.Adapter<RecyclerAdapt.ViewHolder
             super(itemView);
             the_context = the_ctx;
 
-           first = itemView.findViewById(R.id.f_name);
-            last = itemView.findViewById(R.id.l_name);
-          /*  itemColor = itemView.findViewById(R.id.color_text);
+            first = itemView.findViewById(R.id.doc_first);
+            last = itemView.findViewById(R.id.doc_last);
+            /*
+            itemColor = itemView.findViewById(R.id.color_text);
             itemSize = itemView.findViewById(R.id.item_size);
-            dateAdded = itemView.findViewById(R.id.date_item_added); */
+            dateAdded = itemView.findViewById(R.id.date_item_added);
 
             phoneButton = itemView.findViewById(R.id.the_phone_button);
             emailButton = itemView.findViewById(R.id.the_email_button);
 
 
             phoneButton.setOnClickListener(this);
-            emailButton.setOnClickListener(this);
+            emailButton.setOnClickListener(this);*/
         }
 
         @Override
@@ -105,7 +106,7 @@ public class RecyclerAdapt extends RecyclerView.Adapter<RecyclerAdapt.ViewHolder
 
             switch (v.getId())
             {
-                case R.id.the_phone_button:
+                /*case R.id.the_phone_button:
 
                     Toast.makeText(the_context, "phone", Toast.LENGTH_LONG).show();
 
@@ -123,7 +124,7 @@ public class RecyclerAdapt extends RecyclerView.Adapter<RecyclerAdapt.ViewHolder
                     intent.putExtra(Intent.EXTRA_TEXT,"This is from the med app");
                     intent.putExtra(Intent.EXTRA_SUBJECT,"This is from the med app");
                     the_context.startActivity(intent);
-                    break;
+                    break;*/
 
             } //end switch
         }
