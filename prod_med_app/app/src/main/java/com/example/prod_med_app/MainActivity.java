@@ -41,34 +41,17 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     //data storage
     private List<Medication> our_medication_list = null;
 
-
+    private Fragment opening_fragment = null;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //connect to activity_my_list.xml widget
-        recycler_view = findViewById(R.id.test_recycler);
-        recycler_view.setHasFixedSize(true);
-        recycler_view.setLayoutManager(new LinearLayoutManager(this));
-
-        our_medication_list = new ArrayList<>();
-
-        // will delete
-        our_medication_list.add(new Medication("Tylenol", "Acetimono[pehn", "James", "Jones", 45, 45, 2 ));
-        our_medication_list.add(new Medication("Tylenol", "Acetimono[pehn", "James", "Jones", 45, 45, 2 ));
-        our_medication_list.add(new Medication("Tylenol", "Acetimono[pehn", "James", "Jones", 45, 45, 2 ));
-        our_medication_list.add(new Medication("Tylenol", "Acetimono[pehn", "James", "Jones", 45, 45, 2 ));
-        our_medication_list.add(new Medication("Tylenol", "Acetimono[pehn", "James", "Jones", 45, 45, 2 ));
-
-
-        //setup recycler_adapter
-        recycler_adapter = new RecyclerMedicationAdapt(this, our_medication_list);
-        recycler_view.setAdapter(recycler_adapter);
-
-        //keeps data up to date
-        recycler_adapter.notifyDataSetChanged();
+        // open with home fragment
+        opening_fragment = new FragmentHome();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,
+                opening_fragment).commit();
 
         lines = findViewById(R.id.home_three_bars);
         test_bar = findViewById(R.id.bottom_nav);
@@ -103,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             {
 
                 Toast.makeText(MainActivity.this, "FROM HOME", Toast.LENGTH_LONG).show();
-      //          showPopup(v); FINISH HERE tomorrow
+                showPopup(v);
 
             }
         });
@@ -125,9 +108,9 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     switch (item.getItemId())
                     {
                         case R.id.home_icon:
-                              /*  selectedFragment = new TestFragment();
+                               selectedFragment = new FragmentHome();
                                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,
-                                        selectedFragment).commit();*/
+                                        selectedFragment).commit();
 
                             Toast.makeText(MainActivity.this, "HOME!!!!" , Toast.LENGTH_LONG).show();
                             break;
@@ -142,8 +125,12 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                             break;
 
                         case R.id.doctor_info:
-                            test_bar.setBackgroundResource(R.color.black);
-                            Toast.makeText(MainActivity.this, "DOCTOR INFO!!!!" , Toast.LENGTH_LONG).show();
+                            test_bar.setBackgroundResource(R.color.black);selectedFragment = new FragmentDocInfo();
+
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,
+                                    selectedFragment).commit();
+
+                        //    Toast.makeText(MainActivity.this, "DOCTOR INFO!!!!" , Toast.LENGTH_LONG).show();
                             break;
                     }
 
@@ -154,5 +141,14 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         return false;
+    }
+
+    // this method displays the pop up menu from the top
+    public void showPopup(View v)
+    {
+        PopupMenu the_pop = new PopupMenu(this, v);
+        the_pop.setOnMenuItemClickListener(this);
+        the_pop.inflate(R.menu.home_nav_menu);
+        the_pop.show();
     }
 } // end MainActivity
