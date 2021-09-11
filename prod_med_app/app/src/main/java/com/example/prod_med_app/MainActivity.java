@@ -1,6 +1,7 @@
 package com.example.prod_med_app;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
@@ -34,9 +35,14 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     private ImageView lines;
     private ImageView settinds;
 
+    private ImageView add_icon;
+
     private RecyclerView recycler_view = null;
     private RecyclerMedicationAdapt recycler_adapter= null;
 
+    //to build alert dialog
+    private AlertDialog.Builder our_builder = null;
+    private AlertDialog our_dialog = null;
 
     //data storage
     private List<Medication> our_medication_list = null;
@@ -53,9 +59,19 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,
                 opening_fragment).commit();
 
-        lines = findViewById(R.id.home_three_bars);
         test_bar = findViewById(R.id.bottom_nav);
+
+        add_icon = findViewById(R.id.add_icon);
         test_bar.setOnNavigationItemSelectedListener(navListener);
+
+        add_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "YES ADD WORKS!!!!!" , Toast.LENGTH_LONG).show();
+
+                createAddPopUp();
+            }
+        });
 
         /* starts before 1 month from now */
         Calendar startDate = Calendar.getInstance();
@@ -79,17 +95,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             }
         });
 
-        lines.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
 
-                Toast.makeText(MainActivity.this, "FROM HOME", Toast.LENGTH_LONG).show();
-                showPopup(v);
-
-            }
-        });
 
 
 
@@ -97,6 +103,24 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     } // end onCreate
 
+    private void createAddPopUp()
+    {
+        our_builder = new AlertDialog.Builder(this);
+
+        //make connection to popup.xml
+        View update_pop_up = getLayoutInflater().inflate(R.layout.add_pop_up, null);
+
+
+
+
+        our_builder.setView(update_pop_up);
+
+        //this displays the dialog
+        our_dialog = our_builder.create();
+        our_dialog.show();
+
+
+    }
     // fragments change here
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
