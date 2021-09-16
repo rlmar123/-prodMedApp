@@ -17,11 +17,11 @@
             android:padding="24dp">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/doc_pop_up_title"
                 android:layout_width="wrap_content"
                 android:layout_height="47dp"
                 android:layout_centerHorizontal="true"
-                android:text="Add a Medication"
+                android:text="Add a Doctor Info"
                 android:textColor="#FF0000"
                 android:textSize="18sp"
                 android:textStyle="italic">
@@ -29,55 +29,43 @@
             </TextView>
 
             <EditText
-                android:id="@+id/medication_name"
+                android:id="@+id/first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/title"
-                android:hint="Medication Name : "
+                android:layout_below="@id/doc_pop_up_title"
+                android:hint="Doctor First Name : "
                 android:inputType="textAutoComplete">
-
             </EditText>
 
 
             <EditText
-                android:id="@+id/amount_per_dose"
+                android:id="@+id/last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/medication_name"
-                android:hint="Amount of Pills at a time : "
-                android:inputType="number">
-
+                android:layout_below="@id/first_name"
+                android:hint="Doctor Last Name : "
+                android:inputType="textAutoComplete">
             </EditText>
 
             <EditText
-                android:id="@+id/times_per_day"
+                android:id="@+id/doc_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/amount_per_dose"
-                android:hint="Number of times per day : "
-                android:inputType="number">
-
+                android:layout_below="@id/last_name"
+                android:hint="Email : "
+                android:inputType="textAutoComplete">
             </EditText>
 
             <EditText
-                android:id="@+id/amount_of_pills"
+                android:id="@+id/doc_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/times_per_day"
-                android:hint="Amount of Pills : "
+                android:layout_below="@id/doc_email"
+                android:hint="Phone : "
                 android:inputType="number">
 
             </EditText>
 
-            <EditText
-                android:id="@+id/number_of_refills"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/amount_of_pills"
-                android:hint="Amount of Refills : "
-                android:inputType="number">
-
-            </EditText>
 
        <!--     <Button
                 android:id="@+id/the_save_button"

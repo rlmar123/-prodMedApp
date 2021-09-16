@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     } // end onCreate
 
+    // pop up menus
     private void createAddPopUp()
     {
         our_builder = new AlertDialog.Builder(this);
@@ -121,6 +122,28 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
 
     }
+
+    private void createDocPopUp()
+    {
+        our_builder = new AlertDialog.Builder(this);
+
+        //make connection to popup.xml
+        View update_pop_up = getLayoutInflater().inflate(R.layout.doc_pop_up, null);
+
+
+
+
+        our_builder.setView(update_pop_up);
+
+        //this displays the dialog
+        our_dialog = our_builder.create();
+        our_dialog.show();
+
+
+    }
+
+
+
     // fragments change here
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -146,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                                         selectedFragment).commit();*/
                             Toast.makeText(MainActivity.this, "REFILL!!!!" , Toast.LENGTH_LONG).show();
 
+                            createDocPopUp();
                             break;
 
                         case R.id.doctor_info:
